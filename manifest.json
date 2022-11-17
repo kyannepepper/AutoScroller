@@ -15,7 +15,8 @@
         "matches": [
           "https://developer.chrome.com/docs/extensions/*",
           "https://developer.chrome.com/docs/webstore/*",
-          "https://loraklein.dev/*"
+          "https://loraklein.dev/*",
+          "https://www.uberchord.com/blog/*"
         ]
       }
     ]
