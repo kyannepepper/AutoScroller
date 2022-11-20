@@ -4,8 +4,12 @@ const container = document.querySelector("#main-navigation")
 let SPEED = 1
 
 //elements
+let littleArrowBox = document.createElement("div")
+let littleArrow = document.createElement("img")
+let wrapper = document.createElement("div")
 let box = document.createElement("div")
-let x = document.createElement("div")
+let arrowBox = document.createElement("div")
+let arrow = document.createElement("img")
 let title = document.createElement("h1")
 let speedBox = document.createElement("div")
 let speedTitle = document.createElement("p")
@@ -21,11 +25,16 @@ let speed5 = document.createElement("div")
 let spaceBarTitle = document.createElement("p")
 let plusTitle = document.createElement("p")
 let minusTitle = document.createElement("p")
+let startButton = document.createElement("div")
 
 
 //appending
-container.appendChild(box)
-box.appendChild(x)
+container.appendChild(wrapper)
+container.appendChild(littleArrowBox)
+littleArrowBox.appendChild(littleArrow)
+wrapper.appendChild(arrowBox)
+arrowBox.appendChild(arrow)
+wrapper.appendChild(box)
 box.appendChild(title)
 box.appendChild(speedBox)
 speedBox.appendChild(speedTitle)
@@ -41,78 +50,159 @@ speeds.appendChild(speed5)
 box.appendChild(spaceBarTitle)
 box.appendChild(plusTitle)
 box.appendChild(minusTitle)
-
+box.appendChild(startButton)
 //styles
 let width = 350
 
+
+
+//littleArrowBox
+littleArrowBox.style.width = "30px"
+littleArrowBox.style.height = "70px"
+littleArrowBox.style.backgroundColor = "#ff6116"
+littleArrowBox.style.position = "absolute"
+littleArrowBox.style.top = "0px"
+littleArrowBox.style.left = "calc(100vw - " + 30 + "px)"
+littleArrowBox.style.display = "flex"
+littleArrowBox.style.justifyContent = "center"
+littleArrowBox.style.alignItems = "center"
+littleArrowBox.style.boxShadow = "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+
+littleArrowBox.style.display = "none"
+//littleArrow
+littleArrow.src = "https://icon-library.com/images/white-arrow-icon-png/white-arrow-icon-png-28.jpg"
+littleArrow.style.width = "20px"
+littleArrow.style.transform = "rotate(360deg)"
+
+
+littleArrowBox.addEventListener('mouseover',function(){
+  littleArrow.style.transform = "rotate(180deg)"
+  littleArrowBox.style.cursor = "pointer"
+})
+littleArrowBox.addEventListener('mouseleave',function(){
+  littleArrow.style.transform = "rotate(360deg)"
+  littleArrowBox.style.cursor = "default"
+})
+littleArrowBox.onclick = function() {
+  littleArrowBox.style.display = "none"
+  wrapper.style.display = "flex"
+}
+
+
+
+//wrapper
+wrapper.style.width = width + "px"
+wrapper.style.height = "280px"
+wrapper.style.backgroundColor = "white"
+wrapper.style.position = "absolute"
+wrapper.style.top = "0px"
+wrapper.style.left = "calc(100vw - " + width + "px)"
+wrapper.style.display = "flex"
+wrapper.style.justifyContent = "center"
+wrapper.style.alignItems = "center"
+wrapper.style.boxShadow = "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+
+
+//arrowBox
+arrowBox.style.width = "50px"
+arrowBox.style.height = "280px"
+arrowBox.style.backgroundColor = "#ff6116"
+arrowBox.style.display = "flex"
+arrowBox.style.alignItems = "center"
+arrowBox.style.justifyContent = "center"
+
+
+arrowBox.addEventListener('mouseover',function(){
+  arrow.style.transform = "rotate(360deg)"
+  arrowBox.style.cursor = "pointer"
+})
+arrowBox.addEventListener('mouseleave',function(){
+  arrow.style.transform = "rotate(180deg)"
+  arrowBox.style.cursor = "default"
+})
+arrowBox.onclick = function() {
+  littleArrowBox.style.display = "flex"
+  wrapper.style.display = "none"
+}
+
+
+//arrow
+arrow.src = "https://icon-library.com/images/white-arrow-icon-png/white-arrow-icon-png-28.jpg"
+arrow.style.width = "30px"
+arrow.style.transform = "rotate(180deg)"
+
+
 //box
-box.style.width = width + "px"
+box.style.width = width - 50 + "px"
 box.style.height = "280px"
-box.style.backgroundColor = "gray"
-box.style.position = "absolute"
-box.style.top = "0px"
-box.style.left = "calc(100vw - " + width + "px)"
+box.style.backgroundColor = "white"
 box.style.display = "flex"
 box.style.justifyContent = "center"
-speedBox.style.alignItems = "center"
+box.style.alignItems = "center"
 box.style.flexDirection = "column"
 
-//x
-x.style.width = "20px"
-x.style.height = "20px"
-x.style.backgroundColor = "white"
-x.style.position = "absolute"
-x.style.top = "0px"
-x.style.left = width - 20 + "px"
 
-x.addEventListener('mouseover',function(){
-  x.style.backgroundColor="blue";
-  x.style.cursor = "pointer"
-})
-x.addEventListener('mouseleave',function(){
-  x.style.backgroundColor="white";
-  x.style.cursor = "default"
-})
-x.onclick = function() {
-  box.style.display = "none"
-}
+
+
+
 let y = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
 let scrolling = false
-document.addEventListener('keydown', function(e) {
 
 
-  
-    if ( e.key == " " ) {
-     
-      if ( scrolling == true ) {
-   
-         scrolling = false
-      }
-      
-       else if ( scrolling == false ) {
-        y = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
-        box.style.display = "none"
-        scrolling = true
-      }
-        
-    
+
+startButton.onclick = function() {
+  if ( scrolling == true ) {
+    scrolling = false
+} else if ( scrolling == false ) {
+  y = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+  wrapper.style.display = "none"
+  scrolling = true
+} 
+}
+
+
+
+document.addEventListener('keydown', function(e) {  
+  if ( e.key == " " ) {
+    if ( scrolling == true ) {
+        scrolling = false
+    } else if ( scrolling == false ) {
+      y = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+      wrapper.style.display = "none"
+      scrolling = true
+    } 
   }
-  
+  if ( e.key == "=" ) {
+    if ( SPEED < 5 ) {
+      SPEED += 1
+    } else {
+      SPEED = 5
+    }
+  }
+  if ( e.key == "-" ) {
+    if ( SPEED > 1 ) {
+      SPEED -= 1
+    } else {
+      SPEED = 1
+    }
+  }
 })
-let count = 0
+let count = 3
 let scroll = setInterval(() => {
   
   if (scrolling) {
-    if ( y < (findPosition(document.getElementById("Lyrics_with_Chords"))[0] - 300)) {
+    if ( y < (findPosition(document.getElementById("Lyrics_with_Chords"))[0] - 300 )) {
+      count = 0
+      
       y = (findPosition(document.getElementById("Lyrics_with_Chords"))[0] - 300)
+      window.scrollTo(0, y);
       setInterval(() => {
         if ( count < 3) {
           console.log(count)
           count += 1
         }
-      }, 1000);
+      }, 500);
     }
-    console.log(count)
     if ( y <= (findPosition(document.getElementById("874745"))[0] - 500) && count == 3 ) {
      
       y += SPEED / 20
@@ -123,7 +213,7 @@ let scroll = setInterval(() => {
   }
   
 
-}, 1);
+}, 10);
 
 
 
@@ -147,27 +237,30 @@ function findPosition(obj) {
 //title
 title.innerHTML = "Auto Scroller"
 title.style.fontFamily = "sans-serif"
-title.style.color = "white"
-title.style.fontSize = "15px"
+title.style.color = "rgb(72 78 85)"
+title.style.fontSize = "25px"
 title.style.textAlign = "center"
 title.style.margin = "15px"
 
 //speedBox
-speedBox.style.width = width + "px"
+speedBox.style.width = "180px"
+speedBox.style.height = "80px"
 speedBox.style.display = "flex"
 speedBox.style.display = "flex"
+speedBox.style.backgroundColor = "#EFEFEF"
 speedBox.style.justifyContent = "center"
 speedBox.style.alignItems = "center"
 speedBox.style.margin = "5px"
+speedBox.style.padding = "10px"
+speedBox.style.flexDirection = "column"
+speedBox.style.borderRadius = "3px"
 
 //speedTitle
 speedTitle.innerHTML = "Speed"
 speedTitle.style.fontFamily = "sans-serif"
-speedTitle.style.color = "white"
-speedTitle.style.fontSize = "13px"
-speedTitle.style.textAlign = "center"
+speedTitle.style.color = "#4F4F4F"
+speedTitle.style.fontSize = "18px"
 speedTitle.style.margin = "0px"
-speedTitle.style.marginRight = "30px"
 
 
 //speeds
@@ -179,26 +272,37 @@ speed2.classList.add("speeds")
 speed3.classList.add("speeds")
 speed4.classList.add("speeds")
 speed5.classList.add("speeds")
+
+
+
 let sps = document.querySelectorAll(".speeds")
 
 sps.forEach(sp => {
   sp.style.width = "30px"
   sp.style.height = "30px"
-  sp.style.backgroundColor = "orange"
-  sp.style.border = "1px solid white"
-  sp.style.textAlign = "center"
+  sp.style.backgroundColor = "#CCCCCC"
+  sp.style.border = "1px solid #4F4F4F"
+  sp.style.display = "flex"
+  sp.style.alignItems = "center"
+  sp.style.justifyContent = "center"
   sp.style.fontFamily = "sans-serif"
-  sp.style.color = "white"
-  sp.style.fontSize = "15px"
+  sp.style.color = "#4F4F4F"
+  sp.style.fontSize = "18px"
+  sp.style.boxSizing = "border-box"
+
   sp.addEventListener('mouseover',function(){
-    if ( sp.style.backgroundColor == "orange") {
-      sp.style.backgroundColor="blue";
+    if ( sp.style.backgroundColor == "rgb(204, 204, 204)") {
+      sp.style.backgroundColor="#ff6116"
+      sp.style.color = "#EDEDED"
       sp.style.cursor = "pointer"
     }
   })
   sp.addEventListener('mouseleave',function(){
-    if ( sp.style.backgroundColor != "black" ) {
-      sp.style.backgroundColor="orange";
+    console.log(sp.style.backgroundColor)
+    if ( sp.style.backgroundColor != "rgb(255, 97, 23)" ) {
+      sp.style.backgroundColor="#CCCCCC";
+      console.log(sp.style.backgroundColor)
+      sp.style.color = "#4F4F4F"
       sp.style.cursor = "default"
     }
   })
@@ -206,14 +310,23 @@ sps.forEach(sp => {
   sp.onclick = function () {
       let sps = document.querySelectorAll(".speeds")
       sps.forEach(sp => {
-        sp.style.backgroundColor = "orange"
+        sp.style.color = "#4F4F4F"
+        sp.style.backgroundColor = "#CCCCCC"
       })
-      sp.style.backgroundColor = "black"
+      sp.style.backgroundColor = "#ff6117"
+      sp.style.color = "#EDEDED"
       SPEED = sp.innerHTML
+      console.log(sp.style.backgroundColor)
 
   }
 
 });
+
+speed2.style.borderLeft = "none"
+speed2.style.borderRight = "none"
+speed4.style.borderLeft = "none"
+speed4.style.borderRight = "none"
+
 
 speed1.innerHTML = "1"
 speed2.innerHTML = "2"
@@ -250,10 +363,11 @@ minusTitle.classList.add("title")
 let titles = document.querySelectorAll(".title")
 titles.forEach(title => {
   title.style.width = width + "px"
+  title.style.height = "25px"
   title.style.textAlign = "center"
   title.style.fontFamily = "sans-serif"
-  title.style.color = "white"
-  title.style.fontSize = "15px"
+  title.style.color = "#A5A5A5"
+  title.style.fontSize = "13px"
   title.style.padding = "0px"
   title.style.margin = "0px"
 });
@@ -261,10 +375,29 @@ spaceBarTitle.innerHTML = "Press [space] to start and stop"
 plusTitle.innerHTML = "Press [+] to speed up"
 minusTitle.innerHTML = "Press [-] to slow down"
 
+//startButton
+startButton.style.width = "150px"
+startButton.style.height = "40px"
+startButton.style.display = "flex"
+startButton.style.alignItems = "center"
+startButton.style.justifyContent = "center"
+startButton.style.backgroundColor = "#ff6116"
+startButton.style.color = "#FFFFFF"
+startButton.style.margin = "10px"
+startButton.style.marginBottom = "20px"
+startButton.style.borderRadius = "50px"
+startButton.innerHTML = "START"
 
-
-
-
+console.log("hi")
+startButton.addEventListener('mouseover',function(){
+  console.log("hi")
+  startButton.style.backgroundColor = "red"
+  startButton.style.cursor = "pointer"
+})
+startButton.addEventListener('mouseleave',function(){
+  startButton.style.backgroundColor = "#ff6116"
+  startButton.style.cursor = "default"
+})
 
 
 // `document.querySelector` may return null if the selector doesn't match anything.
