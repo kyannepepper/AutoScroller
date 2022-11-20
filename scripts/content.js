@@ -57,12 +57,12 @@ let width = 350
 
 
 //littleArrowBox
-littleArrowBox.style.width = "30px"
+littleArrowBox.style.width = "50px"
 littleArrowBox.style.height = "70px"
 littleArrowBox.style.backgroundColor = "#ff6116"
 littleArrowBox.style.position = "absolute"
 littleArrowBox.style.top = "0px"
-littleArrowBox.style.left = "calc(100vw - " + 30 + "px)"
+littleArrowBox.style.left = "calc(100vw - " + 50 + "px)"
 littleArrowBox.style.display = "flex"
 littleArrowBox.style.justifyContent = "center"
 littleArrowBox.style.alignItems = "center"
@@ -152,11 +152,14 @@ let scrolling = false
 
 startButton.onclick = function() {
   if ( scrolling == true ) {
+    startButton.innerHTML = "START"
     scrolling = false
 } else if ( scrolling == false ) {
   y = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
   wrapper.style.display = "none"
+  littleArrowBox.style.display = "flex"
   scrolling = true
+  startButton.innerHTML = "STOP"
 } 
 }
 
@@ -164,12 +167,16 @@ startButton.onclick = function() {
 
 document.addEventListener('keydown', function(e) {  
   if ( e.key == " " ) {
+    
     if ( scrolling == true ) {
+      startButton.innerHTML = "START"
         scrolling = false
     } else if ( scrolling == false ) {
       y = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+      littleArrowBox.style.display = "flex"
       wrapper.style.display = "none"
       scrolling = true
+      startButton.innerHTML = "STOP"
     } 
   }
   if ( e.key == "=" ) {
@@ -387,14 +394,17 @@ startButton.style.margin = "10px"
 startButton.style.marginBottom = "20px"
 startButton.style.borderRadius = "50px"
 startButton.innerHTML = "START"
+startButton.style.border = "2px solid #ff6116"
 
 console.log("hi")
 startButton.addEventListener('mouseover',function(){
   console.log("hi")
-  startButton.style.backgroundColor = "red"
+  startButton.style.color = "#ff6116"
+  startButton.style.backgroundColor = "#FFFFFF"
   startButton.style.cursor = "pointer"
 })
 startButton.addEventListener('mouseleave',function(){
+  startButton.style.color = "#FFFFFF"
   startButton.style.backgroundColor = "#ff6116"
   startButton.style.cursor = "default"
 })
